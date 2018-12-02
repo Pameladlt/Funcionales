@@ -1,7 +1,37 @@
 language: java
 
+jdk:
+
+- oraclejdk8
+
+dist: trusty
+sudo: false
+
+
+    
+   - wget http://chromedriver.storage.googleapis.com/2.10/chromedriver_linux64.zip
+  - unzip chromedriver_linux64.zip -d /home/travis/virtualenv/python2.7.9/
+  - export CHROME_BIN=chromium-browser
+addons:
+  chrome: stable
+  apt:
+    packages:
+      - chromium-chromedriver
+      
 before_script:
-- wget http://chromedriver.storage.googleapis.com/2.24/chromedriver_linux64.zip
-- unzip chromedriver_linux64.zip -d 
-/home/travis/virtualenv/python2.7.12/bin/
-- export CHROME_BIN=chromium-browser
+  # include ChromeDriver in PATH
+  - ln --symbolic /usr/lib/chromium-browser/chromedriver "${HOME}/bin/chromedriver"
+  # start Chrome and listen on localhost
+  - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
+  - "export DISPLAY=:99.0"
+  - "sh -e /etc/init.d/xvfb start"
+  - sleep 3
+
+- "export DISPLAY=:99.0"
+- "sh -e /etc/init.d/xvfb start"
+- sleep 3
+-chmod +x chromedriver
+
+script:
+   mvn clean test
+- mvns -f pom.xml test
