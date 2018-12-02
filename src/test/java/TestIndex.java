@@ -15,10 +15,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-/**
- *
- * @author karen
- */
+
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TestIndex {
     private static final String URL = "https://mylistapp.000webhostapp.com/index.php";
@@ -29,7 +26,7 @@ public class TestIndex {
     @BeforeClass
     public static void setUp() {
         //setear el driver
-        System.setProperty("webdriver.chrome.driver","chromedriver.exe");
+       // System.setProperty("webdriver.chrome.driver","chromedriver.exe");
         //abrir chrome
         driver = new ChromeDriver(); 
         driver.get(URL);
