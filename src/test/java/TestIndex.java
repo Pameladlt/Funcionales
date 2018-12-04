@@ -23,10 +23,10 @@ public class TestIndex {
     public TestIndex() {
     }
     
-    @BeforeClass
+   @BeforeClass
     public static void setUp() {
         //setear el driver
-       // System.setProperty("webdriver.chrome.driver","chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver","chromedriver");
         //abrir chrome
         driver = new ChromeDriver(); 
         driver.get(URL);
